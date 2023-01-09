@@ -24,4 +24,9 @@ class Auction
     end
     no_bids
   end
+
+  def potential_revenue
+    revenue = @items.flat_map { |item| item.current_high_bid }
+    revenue.compact.sum
+  end
 end
