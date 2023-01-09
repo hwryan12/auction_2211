@@ -44,21 +44,34 @@ RSpec.describe Auction do
 
   describe "Iteration 2" do
     it "#add_bid" do
-    auction.add_item(item1)
-    auction.add_item(item2)
-    auction.add_item(item3)
-    auction.add_item(item4)
-    auction.add_item(item5)
-    
-    expect(item1.bids).to eq({})
-    
-    item1.add_bid(attendee2, 20)
-    item1.add_bid(attendee1, 22)
+      auction.add_item(item1)
+      auction.add_item(item2)
+      auction.add_item(item3)
+      auction.add_item(item4)
+      auction.add_item(item5)
+      
+      expect(item1.bids).to eq({})
+      
+      item1.add_bid(attendee2, 20)
+      item1.add_bid(attendee1, 22)
 
-    expect(item1.bids).to eq({attendee2 => 20, attendee1 => 22})
+      expect(item1.bids).to eq({attendee2 => 20, attendee1 => 22})
     end
 
     it "#current_high_bid" do
+      auction.add_item(item1)
+      auction.add_item(item2)
+      auction.add_item(item3)
+      auction.add_item(item4)
+      auction.add_item(item5)
+
+      item1.add_bid(attendee2, 20)
+      item1.add_bid(attendee1, 22)
+
+      expect(item1.current_high_bid).to eq(22)
+    end
+
+    it "#unpopular_items" do
     auction.add_item(item1)
     auction.add_item(item2)
     auction.add_item(item3)
@@ -67,8 +80,9 @@ RSpec.describe Auction do
 
     item1.add_bid(attendee2, 20)
     item1.add_bid(attendee1, 22)
-
-    expect(item1.current_high_bid).to eq(22)
-    end
+    item4.add_bid(attendee3, 50)
+    
+    expect(auction.unpopular_items).to eq([item2, item3, item5])
+  end
   end
 end
