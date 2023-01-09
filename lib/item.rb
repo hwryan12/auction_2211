@@ -8,6 +8,11 @@ class Item
   end
 
   def add_bid(attendee, bid)
-    bids[attendee] = bid
+    @bids[attendee] = bid
+  end
+  
+  def current_high_bid
+    high_bid = @bids.values.map { |bid| bid }
+    high_bid.max
   end
 end
