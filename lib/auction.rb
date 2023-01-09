@@ -28,16 +28,15 @@ class Auction
 
   def bidders
     placed_bids = []
-    @items.each do |item|
-      placed_bids << item if item.bids.any?
-    end
+    @items.each { |item| placed_bids << item if item.bids.any? }
     bidders = []
     placed_bids.each do |bid|
-      bid.bids.each do |item|
-        bidders << item[0]
-      end
+      bid.bids.each { |item| bidders << item[0] }
     end
     bidders.uniq
-    # require "pry";binding.pry
+  end
+
+  def bidder_info
+    
   end
 end
