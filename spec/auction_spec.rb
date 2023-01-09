@@ -16,11 +16,18 @@ RSpec.describe Auction do
       expect(auction.items).to eq ([])
     end
 
-    it "Can add item to items array" do
+    it "#add_item" do
       auction.add_item(item1)
       auction.add_item(item2)
 
       expect(auction.items).to eq ([item1, item2])
+    end
+
+    it "#add_item" do
+      auction.add_item(item1)
+      auction.add_item(item2)
+    # require "pry"; binding.pry
+      expect(auction.item_names).to eq (["Chalkware Piggy Bank", "Bamboo Picture Frame"])
     end
   end
 end
